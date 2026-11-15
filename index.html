@@ -25,30 +25,30 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
   background:radial-gradient(circle at 50% 28%,#3d2b26 0,#191312 65%,#0f0b0a 100%);
   font-family:Rubik,system-ui,sans-serif;color:#f1e6df;padding:calc(40px + env(safe-area-inset-top)) 12px calc(24px + env(safe-area-inset-bottom));overscroll-behavior:none;
   user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.wrap{position:relative;width:min(370px,94vw)}
+.wrap{position:relative;width:min(500px,96vw,calc((100vh - 150px)*.8))}
 .ring{position:absolute;left:50%;top:-30px;width:46px;height:46px;margin-left:-23px;border-radius:50%;
   border:7px solid #b9b4ad;box-shadow:inset 0 2px 3px rgba(0,0,0,.5),0 2px 3px rgba(255,255,255,.15);z-index:0}
 .device{position:relative;z-index:1;width:100%;aspect-ratio:.8;
   border-radius:50% 50% 47% 47% / 57% 57% 43% 43%;
   background:radial-gradient(circle at 34% 22%,#ff6a55 0,#d9291f 30%,#a51410 70%,#6a0907 100%);
   box-shadow:inset -14px -22px 34px rgba(0,0,0,.45),inset 12px 16px 26px rgba(255,255,255,.22),0 34px 60px rgba(0,0,0,.65);
-  display:flex;flex-direction:column;align-items:center;padding-top:11%}
+  display:flex;flex-direction:column;align-items:center;padding-top:9%}
 .brand{font-weight:900;letter-spacing:.2em;font-size:clamp(15px,4.6vw,19px);color:#fff3d2;text-shadow:0 2px 0 #6a0907}
 .sub{font-size:clamp(9px,2.6vw,11px);letter-spacing:.24em;color:#ffd9c9;opacity:.85;margin-top:2px;text-transform:uppercase}
 .stripe{width:78%;height:7px;margin:6px 0 0;border-radius:4px;
   background:repeating-linear-gradient(90deg,#f6e27a 0 14px,#d8d3c6 14px 28px);opacity:.9;box-shadow:0 1px 2px rgba(0,0,0,.4)}
-.bezel{margin-top:5%;width:74%;background:linear-gradient(#efe8d8,#d9d0bc);border-radius:20px;padding:9px;
+.bezel{margin-top:4%;width:86%;background:linear-gradient(#efe8d8,#d9d0bc);border-radius:20px;padding:9px;
   box-shadow:inset 0 3px 8px rgba(0,0,0,.35),0 2px 0 rgba(255,255,255,.3)}
 .screen{position:relative;background:var(--lcd);border-radius:7px;padding:5px;box-shadow:inset 0 2px 7px rgba(0,0,0,.4)}
 .icons{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;justify-items:center}
-.icons canvas{width:78%;max-width:34px;image-rendering:pixelated;cursor:pointer;opacity:.2;transition:opacity .08s}
+.icons canvas{width:62%;max-width:40px;image-rendering:pixelated;cursor:pointer;opacity:.2;transition:opacity .08s}
 .icons canvas.sel{opacity:1}
 .icons canvas.blink{animation:blink .45s steps(1) infinite}
 @keyframes blink{50%{opacity:.15}}
 .stage{position:relative;margin:4px 0}
 #lcd{display:block;width:100%;image-rendering:pixelated;border-radius:2px}
 #ov{position:absolute;inset:0;background:var(--lcd);color:var(--ink);font-family:VT323,monospace;
-  font-size:clamp(14px,4.3vw,19px);line-height:1.02;padding:4px 7px;display:none;flex-direction:column;justify-content:center;
+  font-size:clamp(15px,4.6vw,22px);line-height:1.04;padding:6px 10px;display:none;flex-direction:column;justify-content:center;
   text-align:center;border-radius:2px}
 #ov b{font-weight:normal;font-size:1.18em;letter-spacing:.02em}
 #ov small{font-size:.86em;opacity:.8}
@@ -66,7 +66,7 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
 #strip{color:var(--ink);font-family:VT323,monospace;text-align:center;font-size:clamp(13px,3.8vw,16px);line-height:1;
   height:2.15em;display:flex;align-items:center;justify-content:center;padding:0 3px;margin:-2px 0 3px;border-radius:3px}
 #strip.alarm{background:var(--ink);color:var(--lcd);animation:blink .5s steps(1) infinite}
-.buttons{display:flex;gap:9%;margin-top:7%;align-items:flex-start}
+.buttons{display:flex;gap:9%;margin-top:5%;align-items:flex-start}
 .btn{display:flex;flex-direction:column;align-items:center;gap:5px}
 .btn:nth-child(2){margin-top:14px}
 .btn button{width:clamp(42px,12vw,50px);height:clamp(42px,12vw,50px);border-radius:50%;border:0;cursor:pointer;
@@ -74,7 +74,7 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
   box-shadow:0 4px 0 #5a0705,0 6px 10px rgba(0,0,0,.5),inset 0 -3px 5px rgba(0,0,0,.25)}
 .btn button:active,.btn button.down{transform:translateY(3px);box-shadow:0 1px 0 #5a0705,0 2px 4px rgba(0,0,0,.5),inset 0 -2px 4px rgba(0,0,0,.25)}
 .btn span{font-weight:700;font-size:12px;color:#ffe2d6;letter-spacing:.08em}
-.below{width:min(370px,94vw);text-align:center;font-size:13px;color:#cdbdb4;line-height:1.5}
+.below{width:min(500px,96vw);text-align:center;font-size:13px;color:#cdbdb4;line-height:1.5}
 .below .ctrl{display:flex;justify-content:center;gap:10px;margin-top:8px}
 .below button{font:inherit;font-size:12px;font-weight:500;color:#f1e6df;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
   border-radius:999px;padding:6px 14px;cursor:pointer}
@@ -122,47 +122,65 @@ const rnd=(a,b)=>a+Math.random()*(b-a);
 const rint=(a,b)=>Math.floor(rnd(a,b+1));
 
 /* ---------- LCD ---------- */
-const W=64,H=40,S=6;
+const W=128,H=80,GY=74;let S=5;
 const cv=$('#lcd');cv.width=W*S;cv.height=H*S;
+let lastCW=0;
+function fitCanvas(){const cw=cv.clientWidth;if(!cw||cw===lastCW)return;lastCW=cw;const dpr=window.devicePixelRatio||1;
+  const s=Math.max(2,Math.round(cw*dpr/W));if(s!==S){S=s;cv.width=W*S;cv.height=H*S}}
 const cx=cv.getContext('2d');
 let buf=new Uint8Array(W*H);
 function clear(){buf.fill(0)}
 function px(x,y,v=1){x=Math.round(x);y=Math.round(y);if(x<0||y<0||x>=W||y>=H)return;buf[y*W+x]=v}
+function hline(x0,x1,y,v){for(let x=x0;x<=x1;x++)px(x,y,v)}
+function rect(x0,y0,x1,y1,v){for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)px(x,y,v)}
+function box(x0,y0,x1,y1,v){hline(x0,x1,y0,v);hline(x0,x1,y1,v);for(let y=y0;y<=y1;y++){px(x0,y,v);px(x1,y,v)}}
+const VAL={'#':1,'+':2,'-':3};
 function spr(rows,x,y,o={}){
-  const clip=o.clip==null?99:o.clip;
+  const clip=o.clip==null?999:o.clip;
   for(let j=0;j<rows.length;j++){const r=rows[j];
-    for(let i=0;i<r.length&&i<clip;i++){const c=r[o.flip?r.length-1-i:i];
-      if(c==='#')px(x+i,y+j,1);else if(c==='+')px(x+i,y+j,2);}}
+    for(let i=0;i<r.length&&i<clip;i++){const c=r[o.flip?r.length-1-i:i];const v=VAL[c];if(v)px(x+i,y+j,o.v||(o.mono?1:v))}}
 }
 function flush(dark){
   cx.fillStyle=dark?'#2e3729':'#c3cfa6';cx.fillRect(0,0,cv.width,cv.height);
-  const c0=dark?'rgba(255,255,255,.035)':'rgba(0,0,0,.05)',c1=dark?'#b2c193':'#20271b',c2=dark?'#6f7d59':'#68765a';
-  for(let y=0;y<H;y++)for(let x=0;x<W;x++){const v=buf[y*W+x];cx.fillStyle=v===1?c1:v===2?c2:c0;cx.fillRect(x*S,y*S,S-1,S-1)}
+  const pal=dark?['rgba(255,255,255,.03)','#b8c79a','#7b8a64','#4c5842']:['rgba(0,0,0,.045)','#20271b','#617054','#a4b188'];
+  fitCanvas();const g=S>=4?1:0;
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){cx.fillStyle=pal[buf[y*W+x]];cx.fillRect(x*S,y*S,S-g,S-g)}
 }
 
 /* ---------- Sprites ---------- */
-const HELM=["......####......","....##++++##....","...#++++++++#...","...#++++++++#...","..############.."];
-const FACES={
-  normal:["....#......#....","....#.#..#.#....","....#......#....","....#..##..#...."],
-  happy: ["....#.#..#.#....","....#......#....","....#.#..#.#....","....#..##..#...."],
-  sad:   ["....#......#....","....#.#..#.#....","....#..##..#....","....#.#..#.#...."],
-  eat:   ["....#......#....","....#.#..#.#....","....#..##..#....","....#..##..#...."],
-  sleep: ["....#......#....","....#.+..+.#....","....#......#....","....#..##..#...."]
+const M=h=>h+h.split('').reverse().join('');
+const HELM_H=["............####",".........###----",".......##---++++","......#--+++++++",".....#-+++++++++","....#-++++++++++","....#+++++++++##","....#++++++++#--","....#+++++++++##","...##+++++++++++","..##############","...#############"];
+const FACE_H={
+ normal:[".....##.#.......",".....##.#.......",".....##.#..++...",".....##.#..##...",".....##.#..##...",".....##.#.......",".....##.#......#","......#.#.......","........#....###",".........#......"],
+ happy:[".....##.#.......",".....##.#.......",".....##.#..++...",".....##.#..##...",".....##.#.#..#..",".....##.#.......",".....##.#......#","......#.#...#...","........#....###",".........#......"],
+ sad:[".....##.#.......",".....##.#.......",".....##.#...++..",".....##.#..##...",".....##.#..##...",".....##.#.......",".....##.#......#","......#.#.......","........#....###",".........#..#..."],
+ eat:[".....##.#.......",".....##.#.......",".....##.#..++...",".....##.#..##...",".....##.#..##...",".....##.#.......",".....##.#......#","......#.#...####","........#...#---",".........#..####"],
+ sleep:[".....##.#.......",".....##.#.......",".....##.#.......",".....##.#.......",".....##.#.####..",".....##.#.......",".....##.#......#","......#.#.......","........#.....##",".........#......"]
 };
-const CHIN=".....######.....";
-const BODY=["...##########...","..#++++##++++#..","..#+########+#..","..#++++##++++#..","..##.######.##.."];
-const LEGS=[["....#++##++#....","....#++##++#....","...###....###..."],["....#++##++#....","...#++#..#++#...","..###......###.."]];
-function ff(face,pose){return HELM.concat(FACES[face]||FACES.normal,[CHIN],BODY,LEGS[pose||0])}
-function rot(rows){const h=rows.length,w=16,o=[];for(let j=0;j<w;j++){let s='';for(let i=0;i<h;i++)s+=rows[i][w-1-j]||'.';o.push(s)}return o}
+const CHIN_H="..........######";
+const BODY_H=[".......#########",".....##+++++##--","....#+++++++#---","...#+++++++++++#","..#+#++++++++++#","..#-#----------#","..#+#++++++++++#","..#+#++++++++++#","..#-#----------#","..#+#++++++++++#","..###++++++++++#","..###.##########"];
+const LEG_H=[".......#++++++#.",".......#++++++#.",".......#------#.",".......#++++++#.",".......#++++++#.","......#########.",".....##########."];
+const _ffc={};
+function ff(face,pose){const k=face+pose;if(_ffc[k])return _ffc[k];
+  let rows=[...HELM_H,...(FACE_H[face]||FACE_H.normal),CHIN_H,...BODY_H,...LEG_H].map(M);
+  if(pose){const n=rows.length;for(let r=n-7;r<n;r++){const src=r+1<n?rows[r+1].slice(0,16):'.'.repeat(16);rows[r]=src+rows[r].slice(16)}}
+  return _ffc[k]=rows}
+function up2(rows){const h=rows.length,w=Math.max(...rows.map(r=>r.length));const g=(x,y)=>(y<0||y>=h||x<0||x>=w)?'.':(rows[y][x]||'.');const out=[];
+  for(let y=0;y<h;y++){let a='',b='';for(let x=0;x<w;x++){const P=g(x,y),A=g(x,y-1),B=g(x+1,y),C=g(x-1,y),D=g(x,y+1);let p1=P,p2=P,p3=P,p4=P;
+    if(C===A&&C!==D&&A!==B)p1=A;if(A===B&&A!==C&&B!==D)p2=B;if(D===C&&D!==B&&C!==A)p3=C;if(B===D&&B!==A&&D!==C)p4=D;a+=p1+p2;b+=p3+p4}out.push(a,b)}return out}
+function rot(rows){const h=rows.length,w=rows[0].length,o=[];for(let j=0;j<w;j++){let s='';for(let i=0;i<h;i++)s+=rows[i][w-1-j]||'.';o.push(s)}return o}
+
 const LYING=rot(ff('sleep',0));
-const FLAME=["....#....","...##.#..","..###.#..","..#####..",".##+####.",".#+++###.","##+++++##","#++#+#++#","#+++++++#",".#######."];
-const HYDRANT=["..#..",".###.","#####",".#+#.","##+##",".#+#.",".#+#.","#####"];
+const FLAME=up2(["....#....","...##.#..","..###.#..","..#####..",".##+####.",".#+-+###.","##+---+##","#++#-#++#","#+++-+++#",".#######."]);
+const HYDRANT=up2(["..#..",".###.","#####",".#+#.","##-##",".#+#.",".#+#.","#####"]);
 const FOOD={
-  semmel:["..######..",".#++++++#.","##########","#+#+#+#+##","##########",".########."],
-  apfel:["...#...","..#....",".##.##.","#+++++#","#+++++#","#+++++#",".#####."],
-  kaffee:[".#.#....","#.#.....","######..","#++++###","#++++#.#","#++++###",".####..."]
+  semmel:up2(["..######..",".#------#.","##########","#+#+#+#+##","##########",".########."]),
+  apfel:up2(["...#...","..#.-..",".##.##.","#-++++#","#+++++#","#+++++#",".#####."]),
+  kaffee:up2([".#.#....","#.#.....","######..","#----###","#++++#.#","#++++###",".####..."])
 };
-const Z5=["###","..#",".#.","#..","###"],Z3=["##.",".#.",".##"],EXC=["#","#","#",".","#"];
+const CLOUD=["......------......","...------------.--.",".-----------------..","--------------------",".------------------."];
+const Z5=up2(["###","..#",".#.","#..","###"]),Z3=up2(["##.",".#.",".##"]),EXC=up2(["#","#","#",".","#"]);
+const GLYPH_F=["###","#..","##.","#..","#.."];
 const ICONS=[
   ["..#####..",".#+++++#.","#+++++++#","#########","#+#+#+#+#","#########","#+++++++#",".#######.","........."],
   [".........",".........","##.....##","##.....##","#########","##.....##","##.....##",".........","........."],
@@ -175,9 +193,9 @@ const ICONS=[
 ];
 const ICON_NAMES=['Essen','Training','Duschen','Kartenrunde','Schlafen','Status','Einsatz','Hilfe'];
 const iconEls=[];
-ICONS.forEach((rows,i)=>{const c=document.createElement('canvas');c.width=54;c.height=54;c.title=ICON_NAMES[i];
+ICONS.forEach((rows0,i)=>{const rows=up2(rows0);const c=document.createElement('canvas');c.width=54;c.height=54;c.title=ICON_NAMES[i];
   const g=c.getContext('2d');g.fillStyle='#20271b';
-  rows.forEach((r,y)=>{for(let x=0;x<r.length;x++)if(r[x]!=='.')g.fillRect(x*6,y*6,5,5)});
+  rows.forEach((r,y)=>{for(let x=0;x<r.length;x++)if(r[x]!=='.')g.fillRect(x*3,y*3,3,3)});
   c.addEventListener('pointerdown',e=>{e.preventDefault();ensureAudio();if(mode==='main'&&!anim){sel=i;drawIcons();sfx('click');activate(i)}});
   (i<4?$('#iconsTop'):$('#iconsBot')).appendChild(c);iconEls.push(c)});
 
@@ -320,7 +338,7 @@ function startEinsatz(){
   showOv(`<b>ALARM: ${alarm.t}</b><small>${alarm.d}</small><br><small>${alarm.g==='fire'?'◀ ▶ zielen · OK spritzen':'OK drücken, wenn der Strich im Feld ist'}</small><br><span class="blinktxt">OK = Ausrücken!</span>`)}
 function beginMinigame(t){hideOv();
   if(alarm.g==='fire'){mode='fire';mg={aim:1,lane:-1,flameUntil:0,nextFlame:t+800,hits:0,target:6,end:t+(15+st.s.fit/10)*1000,sprayUntil:0,puff:null,grow:0}}
-  else{mode='tech';mg={round:0,rounds:5,wins:0,pos:4,dir:1,speed:32,zw:Math.round(8+st.s.fit/20),zx:0,pauseUntil:0,last:t,flash:null,done:false,res:[]};mg.zx=rint(8,56-mg.zw)}
+  else{mode='tech';mg={round:0,rounds:5,wins:0,pos:8,dir:1,speed:64,zw:Math.round(16+st.s.fit/10),zx:0,pauseUntil:0,last:t,flash:null,done:false,res:[]};mg.zx=rint(16,112-mg.zw)}
   drawIcons()}
 function finishEinsatz(ok){
   const a=alarm;st.einsaetze++;let gain;
@@ -334,7 +352,7 @@ function finishEinsatz(ok){
   sfx(ok?'win':'lose');showOv(h+'<br><small>OK = weiter</small>')}
 
 /* Fire minigame */
-const LANES=[10,32,54];
+const LANES=[20,64,108];
 function updFire(t){if(t>mg.end)return finishEinsatz(false);
   if(mg.lane<0&&t>=mg.nextFlame){let l=rint(0,2);if(l===mg.aim&&Math.random()<.6)l=(l+rint(1,2))%3;mg.lane=l;mg.flameUntil=t+Math.max(900,1900-mg.hits*140)}
   if(mg.lane>=0&&t>mg.flameUntil){mg.grow++;mg.lane=-1;mg.nextFlame=t+300;sfx('miss')}}
@@ -342,33 +360,35 @@ function pressFire(b,t){if(b==='A')mg.aim=Math.max(0,mg.aim-1);else if(b==='C')m
   else{mg.sprayUntil=t+300;sfx('spray');if(mg.lane===mg.aim){mg.hits++;mg.puff={l:mg.lane,until:t+450};mg.lane=-1;mg.nextFlame=t+380;sfx('hit');
     if(mg.hits>=mg.target)setTimeout(()=>{if(mode==='fire')finishEinsatz(true)},350)}}}
 function drawFire(t){clear();ground();
-  if(mg.lane>=0){const fl=Math.floor(t/140)%2===0;spr(FLAME,LANES[mg.lane]-4,3,{flip:fl})}
-  if(mg.puff&&t<mg.puff.until){const x=LANES[mg.puff.l],k=(mg.puff.until-t)/450;const r=Math.round(2+(1-k)*4);
-    for(let a=0;a<12;a++){px(x+Math.cos(a/12*6.28)*r,9+Math.sin(a/12*6.28)*r*.8,2)}}
-  const fx=LANES[mg.aim]-8;spr(ff(mg.hits>=mg.target?'happy':'normal',0),fx,19);
-  const nx=LANES[mg.aim];
-  if(t<mg.sprayUntil){const ph=Math.floor(t/50)%2;for(let y=4;y<19;y++)if((y+ph)%2===0)px(nx+(y<9?((y%3)-1):0),y,1);px(nx-2,4,2);px(nx+2,4,2);px(nx-1,3,1);px(nx+1,3,1)}
-  else{px(nx,17,1);px(nx,18,1)}
-  for(let i=0;i<mg.target;i++)px(2+i*2,1,i<mg.hits?1:2);
+  for(const lx of LANES){px(lx,1,3);px(lx,0,3)}
+  if(mg.lane>=0){const fl=Math.floor(t/140)%2===0;spr(FLAME,LANES[mg.lane]-9,2,{flip:fl});
+    const g=Math.floor(t/90)%3;px(LANES[mg.lane]-4+g*3,1-g%2,2)}
+  if(mg.puff&&t<mg.puff.until){const x=LANES[mg.puff.l],k=(mg.puff.until-t)/450;const r=Math.round(4+(1-k)*9);
+    for(let a=0;a<20;a++){px(x+Math.cos(a/20*6.28)*r,12+Math.sin(a/20*6.28)*r*.8,a%2?2:3)}}
+  const nx=LANES[mg.aim];spr(ff(mg.hits>=mg.target?'happy':'normal',0),nx-16,GY-42);
+  if(t<mg.sprayUntil){const ph=Math.floor(t/45)%3;for(let y=21;y<32;y++){if((y+ph)%3!==0){px(nx,y,1);px(nx+1,y,2)}}
+    for(let a=-4;a<=4;a++){px(nx+a,20-Math.abs(a)%2,(a+ph)%2?2:3);if(Math.abs(a)>1)px(nx+a*1.5,17+ph,3)}}
+  else{rect(nx,28,nx+1,31,1)}
+  for(let i=0;i<mg.target;i++)rect(4+i*7,GY+2,8+i*7,GY+5,i<mg.hits?1:2);
 }
 
 /* Tech minigame */
 function updTech(t){const dt=(t-mg.last)/1000;mg.last=t;if(t<mg.pauseUntil||mg.done)return;
-  mg.pos+=mg.dir*mg.speed*dt;if(mg.pos>59){mg.pos=59;mg.dir=-1}if(mg.pos<4){mg.pos=4;mg.dir=1}}
+  mg.pos+=mg.dir*mg.speed*dt;if(mg.pos>119){mg.pos=119;mg.dir=-1}if(mg.pos<8){mg.pos=8;mg.dir=1}}
 function pressTech(b,t){if(b!=='B'||t<mg.pauseUntil||mg.done)return;
-  const p=Math.round(mg.pos),hit=p>=mg.zx&&p<=mg.zx+mg.zw;if(hit){mg.wins++;sfx('hit')}else sfx('miss');
-  mg.flash={hit,until:t+700};mg.res.push(hit);mg.round++;mg.pauseUntil=t+750;mg.speed+=9;
+  const p=Math.round(mg.pos),hit=p>=mg.zx-1&&p<=mg.zx+mg.zw+1;if(hit){mg.wins++;sfx('hit')}else sfx('miss');
+  mg.flash={hit,until:t+700};mg.res.push(hit);mg.round++;mg.pauseUntil=t+750;mg.speed+=18;
   if(mg.round>=mg.rounds){mg.done=true;setTimeout(()=>{if(mode==='tech')finishEinsatz(mg.wins>=3)},800)}
-  else setTimeout(()=>{if(mg&&mode==='tech'){mg.zx=rint(8,56-mg.zw);mg.last=performance.now()}},750)}
+  else setTimeout(()=>{if(mg&&mode==='tech'){mg.zx=rint(16,112-mg.zw);mg.last=performance.now()}},750)}
 function drawTech(t){clear();
-  const show=!(mg.flash&&t<mg.flash.until&&!mg.flash.hit&&Math.floor(t/100)%2);
-  if(show){for(let x=3;x<=60;x++){px(x,14,1);px(x,24,1)}for(let y=14;y<=24;y++){px(3,y,1);px(60,y,1)}}
-  for(let x=mg.zx;x<=mg.zx+mg.zw;x++)for(let y=16;y<=22;y++)px(x,y,(mg.flash&&t<mg.flash.until&&mg.flash.hit)?1:2);
-  const p=Math.round(mg.pos);for(let y=12;y<=26;y++){px(p,y,1)}px(p-1,12,1);px(p+1,12,1);px(p-1,26,1);px(p+1,26,1);
-  for(let i=0;i<mg.rounds;i++){const x=18+i*6,r=mg.res[i];
-    for(let a=0;a<4;a++)for(let b2=0;b2<4;b2++){const edge=a===0||a===3||b2===0||b2===3;
-      if(edge)px(x+a,31+b2,r===false?2:1);else if(r===true)px(x+a,31+b2,1)}}
-  spr(FLAME.slice(0,0),0,0);
+  const fl=mg.flash&&t<mg.flash.until;
+  const show=!(fl&&!mg.flash.hit&&Math.floor(t/100)%2);
+  if(show){box(6,26,121,46,1);box(7,27,120,45,2)}
+  for(let x=10;x<118;x+=6)px(x,47,2);
+  rect(mg.zx,29,mg.zx+mg.zw,43,(fl&&mg.flash.hit)?1:2);box(mg.zx,29,mg.zx+mg.zw,43,1);
+  for(let x=mg.zx+2;x<mg.zx+mg.zw-1;x+=3)hline(x,x,36,3);
+  const p=Math.round(mg.pos);rect(p,21,p+1,51,1);hline(p-2,p+3,21,1);hline(p-2,p+3,51,1);hline(p-1,p+2,22,1);hline(p-1,p+2,50,1);
+  for(let i=0;i<mg.rounds;i++){const x=34+i*13,r=mg.res[i];box(x,60,x+8,68,r===false?2:1);if(r===true)rect(x+2,62,x+6,66,1);if(r===false){px(x+2,62,2);px(x+6,66,2);px(x+4,64,2);px(x+6,62,2);px(x+2,66,2)}}
 }
 
 /* Cards */
@@ -417,35 +437,61 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)save()});
 window.addEventListener('pagehide',save);
 
 /* ---------- Scenes ---------- */
-const walk={x:24,dir:1,pose:0,next:0};
-function ground(){for(let x=0;x<W;x++)px(x,37,2);for(let x=3;x<W;x+=9){px(x,39,2);px(x+4,38,2)}}
+const walk={x:30,dir:1,pose:0,next:0};
+let lastDraw=0;
+function ground(){hline(0,W-1,GY,1);for(let x=0;x<W;x+=2)px(x,GY+1,3);for(let x=5;x<W;x+=11){px(x,GY+3,2);px(x+1,GY+2,2);px(x+2,GY+3,2)}}
+function isNight(){const h=new Date().getHours();return h>=20||h<6}
+function sky(t,dark){
+  if(dark||isNight()){const v=dark?1:2;
+    for(let a=-5;a<=5;a++)for(let b=-5;b<=5;b++){if(a*a+b*b<=25&&(a-3)*(a-3)+(b+1)*(b+1)>14)px(14+a,10+b,v)}
+    [[34,6],[52,15],[72,4],[96,10],[118,17],[84,22],[44,24]].forEach(([x,y],i)=>{if((Math.floor(t/700)+i)%5)px(x,y,v);if(i%3===0){px(x-1,y,3);px(x+1,y,3)}})}
+  else{for(let a=-4;a<=4;a++)for(let b=-4;b<=4;b++){const d=a*a+b*b;if(d<=18)px(14+a,11+b,d>=11?2:3)}
+    const ph=Math.floor(t/500)%2;for(let k=0;k<8;k++){const g=k/8*6.283+ph*.39;px(14+Math.cos(g)*7,11+Math.sin(g)*7,2);px(14+Math.cos(g)*8.5,11+Math.sin(g)*8.5,2)}
+    spr(CLOUD,Math.round((t/170)%(W+40))-30,6);spr(CLOUD,Math.round((t/240+80)%(W+40))-30,18)}}
+function house(t,siren){
+  for(let y=32;y<=46;y++){const h=Math.round((y-32)*1.3)+1,l=107-h,r=108+h;px(l,y,1);px(r,y,1);for(let x=l+1;x<r;x++)px(x,y,y%3===0?2:3)}
+  hline(86,127,46,1);hline(86,127,47,2);
+  rect(90,48,125,GY-1,3);for(let y=48;y<GY;y++){px(90,y,1);px(125,y,1)}
+  for(let y=50;y<GY;y+=4)for(let x=92+(y%8?0:3);x<124;x+=6)px(x,y,2);
+  rect(98,49,117,54,1);spr(GLYPH_F,103,50,{v:3});spr(GLYPH_F,109,50,{v:3});
+  rect(95,57,120,GY-1,2);box(94,56,121,GY,1);for(let y=59;y<GY;y+=3)hline(95,120,y,1);
+  for(let a=-2;a<=2;a++)for(let b=-2;b<=2;b++)if(a*a+b*b<=5&&a*a+b*b>=2)px(107.5+a,40+b,1);
+  rect(106,29,109,31,siren?(Math.floor(t/200)%2?1:3):2);hline(105,110,31,1);
+  if(siren&&Math.floor(t/200)%2){for(let k=1;k<6;k++){px(105-k*2,29-k,1);px(110+k*2,29-k,1);px(105-k*2,31-k*.3,2);px(110+k*2,31-k*.3,2)}}}
 function mood(){const s=st.s;const avg=(s.satt+s.energie+s.laune)/3;if(avg<35||s.satt<20||s.laune<20)return'sad';if(avg>65)return'happy';return'normal'}
 function needAtt(){return STATS.some(([k])=>st.s[k]<25)}
-function dirt(x,y,t){if(st.s.sauber>=35)return;px(x+5,y+11,1);px(x+10,y+13,1);px(x+6,y+15,1);px(x+9,y+6,2);
-  const ph=Math.floor(t/300)%2;for(let k=0;k<4;k++){px(x+17+((k+ph)%2),y+2+k*2,2);px(x-2-((k+ph)%2),y+4+k*2,2)}}
+function dirt(x,y,t){if(st.s.sauber>=35)return;
+  [[9,27],[20,30],[12,36],[22,34],[25,26],[11,40]].forEach(([a,b])=>px(x+a,y+b,1));px(x+11,y+19,2);px(x+20,y+20,2);
+  const ph=Math.floor(t/300)%2;for(let k=0;k<6;k++){px(x+35+((k+ph)%2),y+4+k*3,2);px(x-4-((k+ph)%2),y+8+k*3,2)}}
 function drawMain(t){clear();
   if(!st){flush(false);return}
-  if(st.asleep){ground();spr(LYING,16,23);for(let x=14;x<36;x++)px(x,36,1);
-    const ph=Math.floor(t/700)%3;if(ph>=0)spr(Z3,36,19);if(ph>=1)spr(Z5,40,13);if(ph>=2)spr(Z5,46,6);
-    if(alarm&&Math.floor(t/300)%2)spr(EXC,61,1);flush(true);return}
-  ground();spr(HYDRANT,57,29);
-  if(t>walk.next){walk.next=t+560;walk.pose^=1;if(Math.random()<.22)walk.dir*=-1;if(Math.random()<.85)walk.x+=walk.dir*2;
-    if(walk.x<2){walk.x=2;walk.dir=1}if(walk.x>38){walk.x=38;walk.dir=-1}}
-  let y=19,face=mood();
-  if(alarm){y=Math.floor(t/220)%2?17:19;face='normal';if(Math.floor(t/300)%2){for(let a=0;a<5;a++)for(let b=0;b<3;b++)px(2+a,2+b,1);px(1,1,2);px(7,1,2);px(4,0,2)}}
-  spr(ff(face,walk.pose),walk.x,y);dirt(walk.x,y,t);
-  if(needAtt()&&Math.floor(t/450)%2)spr(EXC,61,1);
+  if(st.asleep){sky(t,true);ground();house(t,false);
+    rect(18,60,26,68,3);box(18,60,26,68,2);
+    spr(LYING,22,40);hline(18,70,70,1);hline(18,70,71,2);rect(20,72,21,GY-1,1);rect(67,72,68,GY-1,1);
+    const ph=Math.floor(t/700)%3;spr(Z3,68,44);if(ph>=1)spr(Z5,76,32);if(ph>=2)spr(Z5,88,20);
+    if(alarm&&Math.floor(t/300)%2)spr(EXC,122,2);flush(true);return}
+  sky(t,false);ground();house(t,!!alarm);spr(HYDRANT,76,GY-16);
+  if(t>walk.next){walk.next=t+420;walk.pose^=1;if(Math.random()<.18)walk.dir*=-1;if(Math.random()<.85)walk.x+=walk.dir*2;
+    if(walk.x<2){walk.x=2;walk.dir=1}if(walk.x>42){walk.x=42;walk.dir=-1}}
+  let y=GY-42,face=mood();
+  if(alarm){y-=Math.floor(t/220)%2?4:0;face='normal'}
+  spr(ff(face,alarm?Math.floor(t/220)%2:walk.pose),walk.x,y);dirt(walk.x,y,t);
+  if(needAtt()&&Math.floor(t/450)%2)spr(EXC,122,2);
   flush(false)}
-function drawAnim(t){clear();ground();const a=anim,p=(t-a.start)/(a.end-a.start);
+function drawAnim(t){clear();const a=anim,p=(t-a.start)/(a.end-a.start);
+  if(a.type!=='shower'){sky(t,false);ground()}
   if(a.type==='eat'){const f=FOOD[a.food],w=f[0].length,bite=Math.min(3,Math.floor(p*4));
-    spr(ff(Math.floor(t/260)%2?'eat':'normal',0),12,19);if(bite<3)spr(f,34,37-f.length,{clip:Math.ceil(w*(1-bite/3))});
-    if(bite>0)for(let k=0;k<bite;k++)px(32-k*2,35-(k%2),2)}
-  if(a.type==='train'){const up=Math.floor(t/240)%2;spr(ff('normal',up),24,up?15:19);
-    if(up){px(22,14,2);px(42,16,2)}else{px(21,18,2);px(43,20,2)}}
-  if(a.type==='shower'){for(let x=26;x<38;x++)px(x,2,1);for(let x=28;x<36;x++)px(x,3,1);for(let y=0;y<2;y++)px(31,y,1);
-    spr(ff(Math.floor(t/500)%2?'happy':'normal',0),24,19);
-    for(let k=0;k<14;k++){const dx=24+((k*7)%16),dy=4+((t/35+k*11)%30);px(dx,dy,2)}
-    for(let k=0;k<4;k++){const bx=22+k*6,by=34-((t/120+k*3)%6);px(bx,by,2)}}
+    spr(ff(Math.floor(t/260)%2?'eat':'normal',0),24,GY-42);
+    rect(58,GY-3,90,GY-1,3);box(58,GY-4,90,GY-1,1);
+    if(bite<3)spr(f,64,GY-4-f.length,{clip:Math.ceil(w*(1-bite/3))});
+    for(let k=0;k<bite*2;k++)px(56-k*3,GY-6-(k%3)*2,2)}
+  if(a.type==='train'){const up=Math.floor(t/240)%2;spr(ff(up?'happy':'normal',up),48,GY-42-(up?7:0));
+    const ph=Math.floor(t/240)%3;px(44,28+ph*3,2);px(84,24+ph*3,2);px(45,29+ph*3,3);px(85,25+ph*3,3)}
+  if(a.type==='shower'){rect(0,0,W-1,1,2);rect(63,0,64,4,1);rect(52,5,76,7,1);rect(55,8,73,8,2);
+    for(let x=10;x<W;x+=12)for(let y=10;y<GY;y+=12)px(x,y,3);hline(0,W-1,GY,1);
+    spr(ff(Math.floor(t/500)%2?'happy':'normal',0),48,GY-42);
+    for(let k=0;k<30;k++){const dx=52+((k*7)%24),dy=10+((t/30+k*13)%(GY-12));px(dx,dy,2)}
+    for(let k=0;k<6;k++){const bx=44+k*8,by=GY-2-((t/110+k*3)%10);px(bx,by,3);px(bx+1,by,3)}}
   flush(false)}
 
 /* ---------- Loop ---------- */
@@ -461,10 +507,11 @@ function loop(t){requestAnimationFrame(loop);
   if(t-lastLogicTick>=1000){lastLogicTick=t;logic()}
   if(anim&&t>=anim.end){const d=anim.done;anim=null;d&&d();save()}
   if(mode==='fire'&&mg)updFire(t);if(mode==='tech'&&mg)updTech(t);
-  if(mode==='fire'&&mg){drawFire(t);flush(false)}
-  else if(mode==='tech'&&mg){drawTech(t);flush(false)}
-  else if(anim)drawAnim(t);
-  else drawMain(t);
+  if(t-lastDraw>=30){lastDraw=t;
+    if(mode==='fire'&&mg){drawFire(t);flush(false)}
+    else if(mode==='tech'&&mg){drawTech(t);flush(false)}
+    else if(anim)drawAnim(t);
+    else drawMain(t)}
   strip_(t)}
 
 /* ---------- Start ---------- */
