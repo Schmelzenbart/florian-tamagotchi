@@ -7,6 +7,12 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   apk:
@@ -72,3 +78,23 @@ jobs:
           body: "Android-App zum Installieren: florian.apk herunterladen und öffnen."
           files: florian.apk
           make_latest: true
+
+      - name: Webseite mit App zusammenstellen
+        run: |
+          mkdir -p _site
+          cp -r index.html manifest.webmanifest sw.js fonts icons README.md .nojekyll _site/
+          cp florian.apk _site/florian.apk
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: apk
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.d.outputs.page_url }}
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4
