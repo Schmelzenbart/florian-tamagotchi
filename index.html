@@ -79,6 +79,7 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
 .below button{font:inherit;font-size:12px;font-weight:500;color:#f1e6df;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
   border-radius:999px;padding:6px 14px;cursor:pointer}
 .below button:hover{background:rgba(255,255,255,.15)}
+.below a.lnk{font-size:12px;font-weight:500;color:#f1e6df;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 14px;text-decoration:none}
 kbd{font-family:inherit;background:rgba(255,255,255,.1);border-radius:4px;padding:0 5px}
 </style>
 </head>
@@ -110,7 +111,7 @@ kbd{font-family:inherit;background:rgba(255,255,255,.1);border-radius:4px;paddin
 <div class="below">
   ◀ ▶ wählen · OK bestätigen · Symbole lassen sich auch antippen<br>
   Tastatur: <kbd>←</kbd> <kbd>Enter</kbd> <kbd>→</kbd>
-  <div class="ctrl"><button id="snd">Ton: an</button><button id="install" hidden>App installieren</button><button id="reset">Neu beginnen</button></div>
+  <div class="ctrl"><button id="snd">Ton: an</button><button id="install" hidden>App installieren</button><a id="apk" class="lnk" href="https://github.com/Schmelzenbart/florian-tamagotchi/releases/latest/download/florian.apk">Android-App laden</a><button id="reset">Neu beginnen</button></div>
   <div id="ioshint" hidden style="margin-top:8px;font-size:12px">Als App installieren: unten auf <b>Teilen</b> tippen → <b>Zum Home-Bildschirm</b>.</div>
 </div>
 
@@ -474,13 +475,17 @@ else{const mins=(Date.now()-st.last)/60000;if(mins>1){decay(mins*.3,10);msg(mins
 drawIcons();requestAnimationFrame(loop);
 
 /* ---------- Offline-App ---------- */
-if('serviceWorker' in navigator&&location.protocol.startsWith('http')){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+const nativeApp=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+if(nativeApp){$('#apk').remove();$('#ioshint').remove()}
+if(!nativeApp&&'serviceWorker' in navigator&&location.protocol.startsWith('http')){navigator.serviceWorker.register('sw.js').catch(()=>{})}
 const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
 let deferred=null;const ib=$('#install');
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(!standalone)ib.hidden=false});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(!standalone&&!nativeApp)ib.hidden=false});
 ib.addEventListener('click',async()=>{if(!deferred)return;deferred.prompt();try{await deferred.userChoice}catch(e){}deferred=null;ib.hidden=true});
 window.addEventListener('appinstalled',()=>{ib.hidden=true});
-if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone)$('#ioshint').hidden=false;
+if(!nativeApp&&/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone)$('#ioshint').hidden=false;
+if(!nativeApp&&/iphone|ipad|ipod/i.test(navigator.userAgent)&&$('#apk'))$('#apk').remove();
+window.addEventListener('beforeinstallprompt',()=>{});
 })();
 </script>
 </body>
