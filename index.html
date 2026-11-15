@@ -477,7 +477,7 @@ drawIcons();requestAnimationFrame(loop);
 /* ---------- Offline-App ---------- */
 const nativeApp=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
 if(nativeApp){$('#apk').remove();$('#ioshint').remove()}
-if(!nativeApp&&'serviceWorker' in navigator&&location.protocol.startsWith('http')){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+try{if(!nativeApp&&'serviceWorker' in navigator&&location.protocol.startsWith('http')){navigator.serviceWorker.register('sw.js').catch(()=>{})}}catch(e){}
 const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
 let deferred=null;const ib=$('#install');
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(!standalone&&!nativeApp)ib.hidden=false});
