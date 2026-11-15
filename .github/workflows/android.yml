@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
@@ -45,8 +45,21 @@ jobs:
       - name: APK bauen
         working-directory: build/android
         run: |
-          mkdir -p ~/.android
-          cp ../../signing/debug.keystore ~/.android/debug.keystore
+          cat >> app/build.gradle <<'GRADLE'
+
+          android {
+              signingConfigs {
+                  florian {
+                      storeFile file(System.getenv("FLORIAN_KS"))
+                      storePassword "android"
+                      keyAlias "androiddebugkey"
+                      keyPassword "android"
+                  }
+              }
+              buildTypes { debug { signingConfig signingConfigs.florian } }
+          }
+          GRADLE
+          export FLORIAN_KS="$GITHUB_WORKSPACE/signing/debug.keystore"
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon
           cp app/build/outputs/apk/debug/app-debug.apk ../../florian.apk
