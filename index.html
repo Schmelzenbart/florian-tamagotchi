@@ -80,6 +80,21 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
   border-radius:999px;padding:6px 14px;cursor:pointer}
 .below button:hover{background:rgba(255,255,255,.15)}
 .below a.lnk{font-size:12px;font-weight:500;color:#f1e6df;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 14px;text-decoration:none}
+#inst{position:fixed;inset:0;z-index:50;background:rgba(15,11,10,.88);display:none;align-items:center;justify-content:center;padding:20px;
+  padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+#inst.on{display:flex}
+#inst .card{background:#f6efe2;color:#2a1d1a;border-radius:22px;max-width:380px;width:100%;padding:22px 20px 18px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+#inst img{width:64px;height:64px;border-radius:15px;box-shadow:0 3px 8px rgba(0,0,0,.3)}
+#inst h2{margin:10px 0 4px;font-size:21px;font-weight:900;color:#b3191a}
+#inst p{margin:6px 0;font-size:15px;line-height:1.4}
+#inst ol{text-align:left;margin:12px 0 6px;padding-left:22px;font-size:15px;line-height:1.5}
+#inst li{margin:6px 0}
+#inst .ico{display:inline-block;vertical-align:-4px;width:20px;height:20px}
+#inst .go{display:block;margin:14px auto 4px;background:#c8201e;color:#fff;border:0;border-radius:999px;padding:12px 22px;font:inherit;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer}
+#inst .x{background:none;border:0;color:#7a6560;font:inherit;font-size:14px;margin-top:6px;cursor:pointer}
+#inst .arrow{position:fixed;left:50%;bottom:calc(8px + env(safe-area-inset-bottom));transform:translateX(-50%);font-size:44px;color:#ffd84a;animation:bob 1s ease-in-out infinite;display:none}
+#inst.ios .arrow{display:block}
+@keyframes bob{50%{transform:translate(-50%,10px)}}
 kbd{font-family:inherit;background:rgba(255,255,255,.1);border-radius:4px;padding:0 5px}
 </style>
 </head>
@@ -114,6 +129,12 @@ kbd{font-family:inherit;background:rgba(255,255,255,.1);border-radius:4px;paddin
   <div class="ctrl"><button id="snd">Ton: an</button><button id="install" hidden>App installieren</button><a id="apk" class="lnk" href="florian.apk" download="florian.apk">Android-App laden</a><button id="reset">Neu beginnen</button></div>
   <div id="ioshint" hidden style="margin-top:8px;font-size:12px">Als App installieren: unten auf <b>Teilen</b> tippen → <b>Zum Home-Bildschirm</b>.</div>
 </div>
+
+<div id="inst" role="dialog" aria-modal="true"><div class="card">
+  <img src="icons/icon-192.png" alt="">
+  <div id="instBody"></div>
+  <button class="x" id="instClose">Zuerst im Browser ausprobieren</button>
+</div><div class="arrow">⬇</div></div>
 
 <script>
 (function(){
@@ -486,6 +507,25 @@ window.addEventListener('appinstalled',()=>{ib.hidden=true});
 if(!nativeApp&&/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone)$('#ioshint').hidden=false;
 if(!nativeApp&&/iphone|ipad|ipod/i.test(navigator.userAgent)&&$('#apk'))$('#apk').remove();
 window.addEventListener('beforeinstallprompt',()=>{});
+/* ---------- Direkt-Installation per QR-Code (?installieren) ---------- */
+(function(){let q;try{q=new URLSearchParams(location.search)}catch(e){return}
+  if(!q.has('installieren')||nativeApp||standalone)return;
+  try{history.replaceState(null,'',location.pathname)}catch(e){}
+  const ua=navigator.userAgent,isA=/android/i.test(ua),isI=/iphone|ipad|ipod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const box=$('#inst'),body=$('#instBody');
+  $('#instClose').addEventListener('click',()=>box.classList.remove('on'));
+  const share='<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#1a6dd8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+  if(isA){
+    body.innerHTML='<h2>Florian wird geladen …</h2><p>Der Download startet gleich von selbst.</p><ol><li>Falls gefragt: <b>„Trotzdem herunterladen“</b></li><li>Datei <b>florian.apk</b> öffnen</li><li><b>„Installieren“</b> tippen – fertig!</li></ol><a class="go" href="florian.apk" download="florian.apk">Download startet nicht? Hier tippen</a>';
+    box.classList.add('on');setTimeout(()=>{location.href='florian.apk'},500);
+  }else if(isI){
+    body.innerHTML='<h2>Florian installieren</h2><p>Am iPhone geht das in zwei Schritten:</p><ol><li>Unten auf '+share+' <b>Teilen</b> tippen</li><li><b>„Zum Home-Bildschirm“</b> wählen und <b>„Hinzufügen“</b> tippen</li></ol><p style="font-size:13px;color:#7a6560">Wichtig: in <b>Safari</b> öffnen. Danach startet Florian wie eine App – auch ohne Internet.</p>';
+    box.classList.add('on','ios');
+  }else if('onbeforeinstallprompt' in window){
+    body.innerHTML='<h2>Florian installieren</h2><p>Klicke auf „Installieren“, dann liegt Florian als App auf deinem Computer.</p><button class="go" id="instGo">Installieren</button>';
+    box.classList.add('on');$('#instGo').addEventListener('click',async()=>{if(deferred){deferred.prompt();try{await deferred.userChoice}catch(e){}deferred=null;box.classList.remove('on')}else{body.querySelector('p').textContent='Nutze das Installieren-Symbol rechts in der Adressleiste.'}});
+  }
+})();
 })();
 </script>
 </body>
