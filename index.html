@@ -109,8 +109,8 @@ kbd{font-family:inherit;background:rgba(255,255,255,.1);border-radius:4px;paddin
   </div>
 </div>
 <div class="below">
-  ◀ ▶ wählen · OK bestätigen · Symbole lassen sich auch antippen<br>
-  Tastatur: <kbd>←</kbd> <kbd>Enter</kbd> <kbd>→</kbd>
+  <div id="hint">◀ ▶ wählen · OK bestätigen · Symbole lassen sich auch antippen<br>
+  Tastatur: <kbd>←</kbd> <kbd>Enter</kbd> <kbd>→</kbd></div>
   <div class="ctrl"><button id="snd">Ton: an</button><button id="install" hidden>App installieren</button><a id="apk" class="lnk" href="florian.apk" download="florian.apk">Android-App laden</a><button id="reset">Neu beginnen</button></div>
   <div id="ioshint" hidden style="margin-top:8px;font-size:12px">Als App installieren: unten auf <b>Teilen</b> tippen → <b>Zum Home-Bildschirm</b>.</div>
 </div>
@@ -522,8 +522,9 @@ else{const mins=(Date.now()-st.last)/60000;if(mins>1){decay(mins*.3,10);msg(mins
 drawIcons();requestAnimationFrame(loop);
 
 /* ---------- Offline-App ---------- */
+function standaloneNow(){try{return matchMedia('(display-mode: standalone)').matches||!!navigator.standalone}catch(e){return false}}
 const nativeApp=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
-if(nativeApp){$('#apk').remove();$('#ioshint').remove()}
+if(nativeApp||standaloneNow()){$('#hint').remove();$('#apk')&&$('#apk').remove();$('#ioshint').remove()}
 try{if(!nativeApp&&'serviceWorker' in navigator&&location.protocol.startsWith('http')){navigator.serviceWorker.register('sw.js').catch(()=>{})}}catch(e){}
 const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
 let deferred=null;const ib=$('#install');
