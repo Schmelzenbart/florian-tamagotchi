@@ -1,4 +1,4 @@
-const CACHE='florian-v4';
+const CACHE='florian-v6';
 const FILES=['./','index.html','manifest.webmanifest','fonts/vt323.woff2','fonts/rubik-500.woff2','fonts/rubik-700.woff2','fonts/rubik-900.woff2',
   'icons/icon-192.png','icons/icon-512.png','icons/maskable-512.png','icons/apple-touch-icon.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
